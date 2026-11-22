@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ماكينة كروت الشحن | نظام فوري الافتراضي</title>
+  <title>ماكينة الدفع وكروت الشحن | نظام فوري الافتراضي</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
@@ -55,7 +55,7 @@
        ========================================================================== */
     .pos-machine {
       width: 100%;
-      max-width: 820px;
+      max-width: 850px;
       background: #273244;
       border-radius: 28px;
       padding: 14px;
@@ -65,7 +65,6 @@
       flex-direction: column;
     }
 
-    /* فتحة خروج الإيصال أعلى الماكينة */
     .printer-slot {
       width: 240px;
       height: 10px;
@@ -94,7 +93,7 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: 640px;
+      min-height: 660px;
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
       margin-top: 8px;
     }
@@ -167,7 +166,7 @@
     }
 
     .brand-title h1 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       font-weight: 800;
       line-height: 1.2;
     }
@@ -244,10 +243,12 @@
       margin-bottom: 18px;
       padding-bottom: 10px;
       border-bottom: 2px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .screen-heading h2 {
-      font-size: 1.25rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: var(--fawry-blue-dark);
     }
@@ -273,25 +274,94 @@
     }
 
     /* ==========================================================================
-       5. الشاشة الرئيسية: كروت شركات الاتصالات
+       5. الشاشة الرئيسية: أقسام الخدمات (Main Categories)
+       ========================================================================== */
+    .main-categories-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      flex: 1;
+      align-content: center;
+    }
+
+    .category-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: 22px;
+      padding: 32px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 6px;
+      background: var(--cat-color, var(--fawry-blue));
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--cat-color, var(--fawry-blue));
+    }
+
+    .category-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 20px;
+      background: var(--cat-bg, #eff6ff);
+      color: var(--cat-color, var(--fawry-blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+    }
+
+    .category-card h3 {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .category-card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       6. كروت شركات الاتصالات وفئات الكروت
        ========================================================================== */
     .providers-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      flex: 1;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .provider-card {
       background: var(--card-bg);
       border: 2px solid var(--border-color);
       border-radius: var(--radius-lg);
-      padding: 22px 16px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 14px;
+      gap: 12px;
       cursor: pointer;
       transition: var(--transition);
       box-shadow: var(--shadow-sm);
@@ -315,13 +385,9 @@
       box-shadow: var(--shadow-md);
     }
 
-    .provider-card:active {
-      transform: scale(0.98);
-    }
-
     .provider-logo-wrapper {
-      width: 120px;
-      height: 85px;
+      width: 115px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -338,14 +404,11 @@
     }
 
     .provider-name {
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: var(--text-main);
     }
 
-    /* ==========================================================================
-       6. شاشة اختيار فئة الكارت (Denominations Grid)
-       ========================================================================== */
     .denominations-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
@@ -375,10 +438,6 @@
       box-shadow: var(--shadow-md);
     }
 
-    .denom-card:active {
-      transform: scale(0.97);
-    }
-
     .denom-title {
       font-size: 1.05rem;
       font-weight: 700;
@@ -397,30 +456,225 @@
     }
 
     /* ==========================================================================
-       7. شاشة تأكيد العملية (Confirmation Screen)
+       7. قسم فواتير المرافق (الكهرباء - الغاز - المياه)
+       ========================================================================== */
+    .utilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .utility-card {
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 26px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .utility-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 5px;
+      background: var(--util-color, var(--fawry-blue));
+    }
+
+    .utility-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--util-color, var(--fawry-blue));
+      box-shadow: var(--shadow-md);
+    }
+
+    .utility-emoji {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: var(--util-bg, #f8fafc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.1rem;
+    }
+
+    .utility-card h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+    }
+
+    .utility-card span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* نموذج الاستعلام عن الفاتورة ولوحة الأرقام اللمسية */
+    .bill-inquiry-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .bill-form-box {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--fawry-blue-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      background: #f8fafc;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--fawry-blue);
+      background: #ffffff;
+    }
+
+    .account-input {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      letter-spacing: 1.5px;
+      text-align: center;
+      direction: ltr;
+    }
+
+    .form-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .error-msg {
+      color: var(--danger-color);
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    /* لوحة الأرقام اللمسية (Touch Keypad) */
+    .touch-keypad {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      direction: ltr;
+    }
+
+    .key-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      padding: 12px 0;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .key-btn:hover {
+      background: #e2e8f0;
+    }
+
+    .key-btn:active {
+      transform: scale(0.95);
+      background: var(--fawry-blue);
+      color: #ffffff;
+    }
+
+    .key-btn.key-clear {
+      background: #fee2e2;
+      color: var(--danger-color);
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.95rem;
+    }
+
+    .key-btn.key-back {
+      background: #fef3c7;
+      color: #b45309;
+      font-size: 1.1rem;
+    }
+
+    /* ==========================================================================
+       8. شاشة تأكيد العملية (Confirmation Screen)
        ========================================================================== */
     .confirm-box {
       background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 26px;
+      padding: 24px;
       border: 2px solid var(--border-color);
       box-shadow: var(--shadow-md);
-      max-width: 520px;
+      max-width: 540px;
       width: 100%;
       margin: auto;
     }
 
     .confirm-header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .confirm-header img {
       width: 85px;
       height: 60px;
       object-fit: contain;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-radius: 8px;
+    }
+
+    .confirm-utility-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 8px;
+      border-radius: 16px;
+      background: #eff6ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
     }
 
     .confirm-rows {
@@ -428,16 +682,17 @@
       border-radius: var(--radius-md);
       padding: 16px;
       border: 1px dashed #cbd5e1;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .confirm-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 0;
+      padding: 9px 0;
       border-bottom: 1px solid #e2e8f0;
-      font-size: 1.05rem;
+      font-size: 1rem;
+      gap: 12px;
     }
 
     .confirm-row:last-child {
@@ -453,15 +708,16 @@
     .confirm-row span:last-child {
       font-weight: 800;
       color: var(--text-main);
+      text-align: left;
     }
 
     .confirm-row.total-row span:last-child {
-      font-size: 1.4rem;
+      font-size: 1.38rem;
       color: var(--fawry-blue);
     }
 
     /* ==========================================================================
-       8. شاشة الإيصال الحراري (Thermal Receipt Screen)
+       9. شاشة الإيصال الحراري (Thermal Receipt Screen)
        ========================================================================== */
     .success-banner {
       background: #dcfce7;
@@ -481,7 +737,7 @@
     .receipt-paper {
       background: #ffffff;
       width: 100%;
-      max-width: 340px;
+      max-width: 345px;
       margin: 0 auto 20px;
       padding: 20px 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
@@ -523,7 +779,7 @@
     }
 
     .receipt-brand {
-      font-size: 1.3rem;
+      font-size: 1.28rem;
       font-weight: 900;
       letter-spacing: 0.5px;
     }
@@ -537,9 +793,14 @@
     .receipt-line {
       display: flex;
       justify-content: space-between;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       margin-bottom: 7px;
       font-weight: 700;
+      gap: 8px;
+    }
+
+    .receipt-line span:last-child {
+      text-align: left;
     }
 
     .pin-container {
@@ -559,7 +820,7 @@
 
     .pin-code {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.28rem;
+      font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: 1px;
       direction: ltr;
@@ -571,7 +832,6 @@
       font-size: 0.82rem;
       font-weight: 700;
       margin-top: 4px;
-      direction: ltr;
     }
 
     .receipt-footer {
@@ -584,7 +844,7 @@
     }
 
     /* ==========================================================================
-       9. شاشة سجل المبيعات (Sales History Screen)
+       10. شاشة سجل المبيعات (Sales History Screen)
        ========================================================================== */
     .history-stats {
       display: grid;
@@ -628,7 +888,7 @@
       width: 100%;
       border-collapse: collapse;
       text-align: right;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
     th {
@@ -647,9 +907,27 @@
       font-weight: 600;
     }
 
+    .badge-type {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .badge-card {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .badge-bill {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
     .mono-cell {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       direction: ltr;
       text-align: right;
     }
@@ -678,7 +956,7 @@
     }
 
     /* ==========================================================================
-       10. الأزرار السفلية (Touch Action Buttons)
+       11. الأزرار السفلية (Touch Action Buttons)
        ========================================================================== */
     .action-bar {
       margin-top: auto;
@@ -689,10 +967,10 @@
 
     .btn {
       flex: 1;
-      padding: 15px 20px;
+      padding: 14px 18px;
       border: none;
       border-radius: var(--radius-md);
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 800;
       cursor: pointer;
       display: inline-flex;
@@ -747,7 +1025,7 @@
     }
 
     /* ==========================================================================
-       11. تنسيق الطباعة الحرارية مقاس 80mm (Thermal Printer 80mm Print CSS)
+       12. تنسيق الطباعة الحرارية مقاس 80mm (Thermal Printer 80mm Print CSS)
        ========================================================================== */
     @media print {
       @page {
@@ -808,9 +1086,9 @@
     }
 
     /* ==========================================================================
-       12. التجاوب مع الشاشات الصغيرة (Responsive Design)
+       13. التجاوب مع الشاشات الصغيرة (Responsive Design)
        ========================================================================== */
-    @media (max-width: 600px) {
+    @media (max-width: 680px) {
       body {
         padding: 8px;
       }
@@ -835,11 +1113,16 @@
         justify-content: center;
       }
 
-      .providers-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
+      .main-categories-grid,
+      .utilities-grid {
+        grid-template-columns: 1fr;
       }
 
+      .bill-inquiry-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .providers-grid,
       .denominations-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -857,7 +1140,6 @@
 <body>
 
   <main class="pos-machine">
-    <!-- فتحة خروج الإيصال -->
     <div class="printer-slot"></div>
 
     <div class="pos-screen">
@@ -877,12 +1159,12 @@
           <div class="brand-icon">ف</div>
           <div class="brand-title">
             <h1>ماكينة كروت الشحن</h1>
-            <span>نظام بيع كروت الشحن والفكة الفوري</span>
+            <span>نظام بيع الكروت وسداد فواتير المرافق</span>
           </div>
         </div>
         <div class="header-actions">
           <button type="button" class="btn-header" id="nav-home-btn">🏠 الرئيسية</button>
-          <button type="button" class="btn-header" id="nav-history-btn">📋 سجل المبيعات (<span id="history-count-badge">0</span>)</button>
+          <button type="button" class="btn-header" id="nav-history-btn">📋 سجل العمليات (<span id="history-count-badge">0</span>)</button>
         </div>
       </header>
 
@@ -890,20 +1172,45 @@
       <div class="screen-container">
 
         <!-- ================================================================
-             الشاشة 1: اختيار شركة الاتصالات
+             الشاشة 1: اختيار القسم الرئيسي (كروت الشحن أو دفع الفواتير)
              ================================================================ -->
-        <section id="screen-providers" class="screen active">
+        <section id="screen-home" class="screen active">
           <div class="screen-heading">
-            <h2>1. اختر شركة الاتصالات</h2>
-            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;">اضغط على الشعار للمتابعة</span>
+            <h2>اختر الخدمة المطلوبة</h2>
+            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;">خدمات الدفع الإلكتروني الفوري</span>
           </div>
-          <div class="providers-grid" id="providers-grid">
-            <!-- يتم توليد الكروت ديناميكياً من JavaScript -->
+
+          <div class="main-categories-grid">
+            <button type="button" class="category-card" id="go-cards-service-btn" style="--cat-color: #004c97; --cat-bg: #eff6ff;">
+              <div class="category-icon">📱</div>
+              <h3>كروت الشحن والفكة</h3>
+              <p>فودافون • أورانج • اتصالات • وي (WE)<br>جميع فئات كروت الفكة والشحن</p>
+            </button>
+
+            <button type="button" class="category-card" id="go-bills-service-btn" style="--cat-color: #d97706; --cat-bg: #fffbeb;">
+              <div class="category-icon">🧾</div>
+              <h3>دفع فواتير المرافق</h3>
+              <p>فواتير الكهرباء • الغاز الطبيعي • المياه<br>استعلام وسداد فوري برقم المشترك</p>
+            </button>
           </div>
         </section>
 
         <!-- ================================================================
-             الشاشة 2: اختيار فئة الكارت
+             الشاشة 2أ: اختيار شركة الاتصالات
+             ================================================================ -->
+        <section id="screen-providers" class="screen">
+          <div class="screen-heading">
+            <h2>1. اختر شركة الاتصالات</h2>
+            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;">اضغط على الشعار للمتابعة</span>
+          </div>
+          <div class="providers-grid" id="providers-grid"></div>
+          <div class="action-bar">
+            <button type="button" class="btn btn-secondary" id="providers-back-home-btn">➔ رجوع للقائمة الرئيسية</button>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             الشاشة 2ب: اختيار فئة الكارت
              ================================================================ -->
         <section id="screen-denominations" class="screen">
           <div class="screen-heading">
@@ -911,9 +1218,7 @@
             <div class="selected-provider-pill" id="denom-provider-badge"></div>
           </div>
 
-          <div class="denominations-grid" id="denominations-grid">
-            <!-- يتم توليد الفئات ديناميكياً من JavaScript -->
-          </div>
+          <div class="denominations-grid" id="denominations-grid"></div>
 
           <div class="action-bar">
             <button type="button" class="btn btn-secondary" id="back-to-providers-btn">➔ رجوع لاختيار الشركة</button>
@@ -921,84 +1226,118 @@
         </section>
 
         <!-- ================================================================
-             الشاشة 3: تأكيد العملية
+             الشاشة 3أ: اختيار نوع الفاتورة (كهرباء - غاز - مياه)
+             ================================================================ -->
+        <section id="screen-utilities" class="screen">
+          <div class="screen-heading">
+            <h2>1. اختر نوع الفاتورة</h2>
+            <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 700;">سداد فواتير المرافق العامة</span>
+          </div>
+
+          <div class="utilities-grid" id="utilities-grid"></div>
+
+          <div class="action-bar">
+            <button type="button" class="btn btn-secondary" id="utilities-back-home-btn">➔ رجوع للقائمة الرئيسية</button>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             الشاشة 3ب: الاستعلام عن الفاتورة وإدخال رقم المشترك
+             ================================================================ -->
+        <section id="screen-bill-inquiry" class="screen">
+          <div class="screen-heading">
+            <h2 id="bill-inquiry-title">2. الاستعلام عن الفاتورة</h2>
+            <div class="selected-provider-pill" id="bill-utility-badge"></div>
+          </div>
+
+          <div class="bill-inquiry-layout">
+            <div class="bill-form-box">
+              <div class="form-group">
+                <label for="bill-company-select">الشركة / قطاع الخدمة:</label>
+                <select id="bill-company-select" class="form-control"></select>
+              </div>
+
+              <div class="form-group">
+                <label for="bill-account-input" id="bill-account-label">رقم السداد الإلكتروني / رقم المشترك:</label>
+                <input
+                  type="text"
+                  id="bill-account-input"
+                  class="form-control account-input"
+                  placeholder="أدخل الرقم (من 6 إلى 16 رقم)"
+                  maxlength="16"
+                  inputmode="numeric"
+                />
+                <span class="form-hint" id="bill-account-hint">أدخل رقم الحساب أو كود الدفع الموجود على الإيصال</span>
+                <span class="error-msg" id="bill-error-msg">يرجى إدخال رقم مشترك صحيح (6 أرقام على الأقل).</span>
+              </div>
+            </div>
+
+            <!-- لوحة أرقام لمسية لتسهيل الإدخال -->
+            <div class="touch-keypad" id="bill-keypad">
+              <button type="button" class="key-btn" data-key="1">1</button>
+              <button type="button" class="key-btn" data-key="2">2</button>
+              <button type="button" class="key-btn" data-key="3">3</button>
+              <button type="button" class="key-btn" data-key="4">4</button>
+              <button type="button" class="key-btn" data-key="5">5</button>
+              <button type="button" class="key-btn" data-key="6">6</button>
+              <button type="button" class="key-btn" data-key="7">7</button>
+              <button type="button" class="key-btn" data-key="8">8</button>
+              <button type="button" class="key-btn" data-key="9">9</button>
+              <button type="button" class="key-btn key-clear" data-action="clear">مسح</button>
+              <button type="button" class="key-btn" data-key="0">0</button>
+              <button type="button" class="key-btn key-back" data-action="backspace">⌫</button>
+            </div>
+          </div>
+
+          <div class="action-bar">
+            <button type="button" class="btn btn-primary" id="inquire-bill-btn">🔍 استعلام عن الفاتورة</button>
+            <button type="button" class="btn btn-secondary" id="back-to-utilities-btn">➔ رجوع</button>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             الشاشة 4: مراجعة وتأكيد العملية (موحدة للكروت والفواتير)
              ================================================================ -->
         <section id="screen-confirm" class="screen">
           <div class="screen-heading">
-            <h2>3. مراجعة وتأكيد العملية</h2>
+            <h2>مراجعة وتأكيد العملية</h2>
           </div>
 
           <div class="confirm-box">
-            <div class="confirm-header">
-              <img id="confirm-logo" src="" alt="شعار الشركة" />
-              <h3 id="confirm-provider-name" style="font-size: 1.3rem; font-weight: 800;"></h3>
-            </div>
-
-            <div class="confirm-rows">
-              <div class="confirm-row">
-                <span>شركة الاتصالات:</span>
-                <span id="confirm-company-text"></span>
-              </div>
-              <div class="confirm-row">
-                <span>نوع وفئة الكارت:</span>
-                <span id="confirm-card-label"></span>
-              </div>
-              <div class="confirm-row total-row">
-                <span>المبلغ المطلوب دفعه:</span>
-                <span id="confirm-card-price"></span>
-              </div>
-            </div>
+            <div class="confirm-header" id="confirm-header-content"></div>
+            <div class="confirm-rows" id="confirm-rows-container"></div>
 
             <div class="action-bar">
-              <button type="button" class="btn btn-warning" id="confirm-purchase-btn">✔ تأكيد وطباعة الكارت</button>
-              <button type="button" class="btn btn-secondary" id="back-to-denom-btn">➔ رجوع</button>
+              <button type="button" class="btn btn-warning" id="confirm-purchase-btn">✔ تأكيد الدفع وطباعة الإيصال</button>
+              <button type="button" class="btn btn-secondary" id="back-from-confirm-btn">➔ رجوع</button>
             </div>
           </div>
         </section>
 
         <!-- ================================================================
-             الشاشة 4: إيصال الطباعة الحراري
+             الشاشة 5: إيصال الطباعة الحراري (موحد للكروت والفواتير)
              ================================================================ -->
         <section id="screen-receipt" class="screen">
           <div class="success-banner" id="receipt-status-banner">
-            ✅ تمت العملية بنجاح! تم إصدار كارت الشحن
+            ✅ تمت العملية بنجاح!
           </div>
 
           <div class="receipt-paper" id="printable-receipt">
             <div class="receipt-top">
               <div class="receipt-brand">ماكينة كروت الشحن</div>
-              <div class="receipt-sub">إيصال شحن إلكتروني معتمد</div>
+              <div class="receipt-sub" id="rec-subtitle">إيصال دفع إلكتروني معتمد</div>
             </div>
 
-            <div class="receipt-line">
-              <span>الشبكة:</span>
-              <span id="rec-provider"></span>
-            </div>
-            <div class="receipt-line">
-              <span>فئة الكارت:</span>
-              <span id="rec-label"></span>
-            </div>
-            <div class="receipt-line">
-              <span>القيمة المدفوعة:</span>
-              <span id="rec-price"></span>
-            </div>
-            <div class="receipt-line">
-              <span>التاريخ والوقت:</span>
-              <span id="rec-datetime" dir="ltr"></span>
-            </div>
-            <div class="receipt-line">
-              <span>الرقم التسلسلي:</span>
-              <span id="rec-serial" class="mono-cell"></span>
-            </div>
+            <div id="rec-details-rows"></div>
 
             <div class="pin-container">
-              <div class="pin-label">كود الشحن (PIN CODE)</div>
-              <span class="pin-code" id="rec-pin"></span>
-              <div class="ussd-hint" id="rec-ussd"></div>
+              <div class="pin-label" id="rec-highlight-label">كود الشحن (PIN CODE)</div>
+              <span class="pin-code" id="rec-highlight-value"></span>
+              <div class="ussd-hint" id="rec-highlight-sub"></div>
             </div>
 
             <div class="receipt-footer">
-              <div>احتفظ بالإيصال لحين إتمام عملية الشحن</div>
+              <div>احتفظ بالإيصال كإثبات رسمي للعملية</div>
               <div>شكراً لاستخدامكم خدماتنا</div>
             </div>
           </div>
@@ -1010,7 +1349,7 @@
         </section>
 
         <!-- ================================================================
-             الشاشة 5: سجل المبيعات والعمليات
+             الشاشة 6: سجل العمليات والمبيعات
              ================================================================ -->
         <section id="screen-history" class="screen">
           <div class="screen-heading">
@@ -1019,18 +1358,16 @@
 
           <div class="history-stats">
             <div class="stat-card">
-              <span>إجمالي عدد الكروت المباعة</span>
+              <span>إجمالي العمليات المنفذة</span>
               <strong id="stat-total-count">0</strong>
             </div>
             <div class="stat-card">
-              <span>إجمالي قيمة المبيعات</span>
+              <span>إجمالي المبالغ المحصلة</span>
               <strong id="stat-total-amount">0 جنيه</strong>
             </div>
           </div>
 
-          <div class="history-table-wrap" id="history-table-container">
-            <!-- يتم توليد الجدول ديناميكياً -->
-          </div>
+          <div class="history-table-wrap" id="history-table-container"></div>
 
           <div class="action-bar">
             <button type="button" class="btn btn-secondary" id="history-back-btn">🏠 العودة للشاشة الرئيسية</button>
@@ -1045,11 +1382,11 @@
   <script>
     /**
      * ============================================================================
-     * 1. إعدادات النظام والبيانات القابلة للتعديل بسهولة (Configuration)
+     * 1. إعدادات النظام والبيانات (Configuration)
      * ============================================================================
      */
 
-    // بيانات شركات الاتصالات الأربعة بالمسارات المحددة داخل مجلد img
+    // شركات الاتصالات بالمسارات الفعلية داخل مجلد img
     const TELECOM_PROVIDERS = [
       {
         id: "vodafone",
@@ -1085,7 +1422,7 @@
       }
     ];
 
-    // فئات الكروت المتاحة — يمكنك إضافة أو تعديل أي فئة بسهولة من هنا
+    // فئات الكروت المتاحة
     const CARD_DENOMINATIONS = [
       { id: "fakka_5", label: "كارت فكة 5 جنيه", price: 5 },
       { id: "fakka_10", label: "كارت فكة 10 جنيه", price: 10 },
@@ -1096,7 +1433,82 @@
       { id: "fakka_100", label: "كارت فكة 100 جنيه", price: 100 }
     ];
 
-    const STORAGE_KEY = "fawry_virtual_pos_transactions_v1";
+    // بيانات فواتير المرافق (الكهرباء - الغاز - المياه)
+    const UTILITY_SERVICES = [
+      {
+        id: "electricity",
+        name: "فواتير الكهرباء",
+        shortName: "كهرباء",
+        emoji: "⚡",
+        color: "#eab308",
+        bg: "#fefce8",
+        subtitle: "شركات توزيع الكهرباء",
+        accountLabel: "رقم السداد الإلكتروني (14 رقم):",
+        companies: [
+          "شركة شمال القاهرة لتوزيع الكهرباء",
+          "شركة جنوب القاهرة لتوزيع الكهرباء",
+          "شركة الإسكندرية لتوزيع الكهرباء",
+          "شركة مصر الوسطى لتوزيع الكهرباء",
+          "شركة مصر العليا لتوزيع الكهرباء",
+          "شركة القناة لتوزيع الكهرباء",
+          "شركة البحيرة لتوزيع الكهرباء",
+          "شركة شمال الدلتا لتوزيع الكهرباء",
+          "شركة جنوب الدلتا لتوزيع الكهرباء"
+        ]
+      },
+      {
+        id: "gas",
+        name: "فواتير الغاز الطبيعي",
+        shortName: "غاز طبيعي",
+        emoji: "🔥",
+        color: "#ea580c",
+        bg: "#fff7ed",
+        subtitle: "بتروتريد • ناتجاس • طاقة",
+        accountLabel: "رقم المشترك / كود الدفع:",
+        companies: [
+          "شركة بتروتريد (Petrotrade)",
+          "شركة ناتجاس (NATGAS)",
+          "شركة طاقة غاز (TAQA Gas)",
+          "شركة غاز الأقاليم (REGA)",
+          "شركة ماستر جاس (Master Gas)",
+          "شركة سيتي جاس (City Gas)"
+        ]
+      },
+      {
+        id: "water",
+        name: "فواتير المياه",
+        shortName: "مياه الشرب",
+        emoji: "💧",
+        color: "#0284c7",
+        bg: "#f0f9ff",
+        subtitle: "الشركة القابضة لمياه الشرب",
+        accountLabel: "رقم الحساب / كود المشترك:",
+        companies: [
+          "شركة مياه الشرب بالقاهرة الكبرى",
+          "شركة مياه الشرب بالجيزة",
+          "شركة مياه الشرب بالإسكندرية",
+          "شركة مياه الشرب والصرف الصحي ببني سويف",
+          "شركة مياه الشرب والصرف الصحي بالمنوفية",
+          "شركة مياه الشرب والصرف الصحي بالدقهلية",
+          "شركة مياه الشرب والصرف الصحي بالشرقية",
+          "شركة مياه الشرب والصرف الصحي بأسيوط"
+        ]
+      }
+    ];
+
+    // أسماء تجريبية لتوليد بيانات استعلام واقعية عند إدخال أي رقم مشترك
+    const SAMPLE_SUBSCRIBERS = [
+      "أحمد محمود عبد الرحمن",
+      "محمد سعيد إبراهيم",
+      "محمود حسن علي",
+      "سارة مصطفى كامل",
+      "خالد عبد الله السيد",
+      "منى إبراهيم يوسف",
+      "طارق صلاح الدين",
+      "ياسر فاروق عثمان"
+    ];
+
+    const STORAGE_KEY = "fawry_virtual_pos_transactions_v2";
 
     /**
      * ============================================================================
@@ -1104,8 +1516,11 @@
      * ============================================================================
      */
     const appState = {
+      mode: "card", // 'card' أو 'bill'
       selectedProvider: null,
       selectedCard: null,
+      selectedUtility: null,
+      inquiredBill: null,
       currentReceipt: null
     };
 
@@ -1114,8 +1529,6 @@
      * 3. الدوال المساعدة (Utility Functions)
      * ============================================================================
      */
-
-    // تحديث الساعة والتاريخ الحية أعلى الشاشة
     function updateClock() {
       const now = new Date();
       const dateStr = now.toLocaleDateString("ar-EG", {
@@ -1132,7 +1545,6 @@
       document.getElementById("live-clock").textContent = `${dateStr} | ${timeStr}`;
     }
 
-    // توليد رقم كارت عشوائي مكون من 14 أو 16 رقم منسق
     function generatePinCode() {
       let digits = "";
       for (let i = 0; i < 16; i++) {
@@ -1141,25 +1553,21 @@
       return digits.replace(/(\d{4})(?=\d)/g, "$1-");
     }
 
-    // توليد رقم تسلسلي فريد للإيصال
-    function generateSerialNumber() {
-      const timestampPart = Date.now().toString().slice(-6);
-      const randomPart = Math.floor(100000 + Math.random() * 900000);
-      return `SN-${timestampPart}${randomPart}`;
+    function generateReferenceCode() {
+      const timePart = Date.now().toString().slice(-6);
+      const randPart = Math.floor(100000 + Math.random() * 900000);
+      return `FWR-${timePart}${randPart}`;
     }
 
-    // قراءة السجل من LocalStorage
     function getTransactions() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : [];
       } catch (e) {
-        console.error("خطأ في قراءة LocalStorage:", e);
         return [];
       }
     }
 
-    // حفظ عملية جديدة في LocalStorage
     function saveTransaction(tx) {
       const list = getTransactions();
       list.unshift(tx);
@@ -1167,30 +1575,64 @@
       updateHistoryBadge();
     }
 
-    // تحديث عداد العمليات في الشريط العلوي
     function updateHistoryBadge() {
       const count = getTransactions().length;
       document.getElementById("history-count-badge").textContent = count;
     }
 
-    // التنقل بين الشاشات مع تأثير حركي
     function showScreen(screenId) {
-      document.querySelectorAll(".screen").forEach((el) => {
-        el.classList.remove("active");
-      });
+      document.querySelectorAll(".screen").forEach((el) => el.classList.remove("active"));
       const target = document.getElementById(screenId);
-      if (target) {
-        target.classList.add("active");
+      if (target) target.classList.add("active");
+    }
+
+    // محاكاة استعلام ثابت ومنطقي بناءً على رقم المشترك المدخل
+    function simulateBillLookup(utility, companyName, accountNumber) {
+      let hash = 0;
+      for (let i = 0; i < accountNumber.length; i++) {
+        hash = (hash * 31 + accountNumber.charCodeAt(i)) % 10000;
       }
+
+      const subscriberName = SAMPLE_SUBSCRIBERS[hash % SAMPLE_SUBSCRIBERS.length];
+
+      // تحديد قيمة فاتورة منطقية حسب نوع المرفق
+      let baseAmount = 0;
+      if (utility.id === "electricity") {
+        baseAmount = 140 + (hash % 480); // بين 140 و 620 جنيه
+      } else if (utility.id === "gas") {
+        baseAmount = 45 + (hash % 180); // بين 45 و 225 جنيه
+      } else {
+        baseAmount = 60 + (hash % 210); // بين 60 و 270 جنيه
+      }
+
+      const serviceFee = 5; // رسوم الخدمة
+      const totalAmount = baseAmount + serviceFee;
+
+      const now = new Date();
+      const billingMonth = now.toLocaleDateString("ar-EG", { month: "long", year: "numeric" });
+
+      return {
+        utilityId: utility.id,
+        utilityName: utility.name,
+        utilityShortName: utility.shortName,
+        utilityEmoji: utility.emoji,
+        companyName,
+        accountNumber,
+        subscriberName,
+        billingMonth,
+        billAmount: baseAmount,
+        serviceFee,
+        totalAmount
+      };
     }
 
     /**
      * ============================================================================
-     * 4. بناء الشاشات والتفاعل (Screen Rendering & Handlers)
+     * 4. بناء الشاشات والتفاعل (Screen Rendering & Flows)
      * ============================================================================
      */
 
-    // 1. بناء شاشة شركات الاتصالات
+    // بناء شاشة شركات الاتصالات
     function renderProviders() {
       const grid = document.getElementById("providers-grid");
       grid.innerHTML = "";
@@ -1209,6 +1651,7 @@
         `;
 
         card.addEventListener("click", () => {
+          appState.mode = "card";
           appState.selectedProvider = provider;
           openDenominationsScreen();
         });
@@ -1217,13 +1660,12 @@
       });
     }
 
-    // 2. فتح وبناء شاشة فئات الكروت
+    // بناء شاشة فئات الكروت
     function openDenominationsScreen() {
       const provider = appState.selectedProvider;
       if (!provider) return;
 
-      const badge = document.getElementById("denom-provider-badge");
-      badge.innerHTML = `
+      document.getElementById("denom-provider-badge").innerHTML = `
         <img src="${provider.logo}" alt="${provider.name}" />
         <span>${provider.name}</span>
       `;
@@ -1252,26 +1694,155 @@
       showScreen("screen-denominations");
     }
 
-    // 3. فتح شاشة تأكيد العملية
-    function openConfirmScreen() {
-      const { selectedProvider, selectedCard } = appState;
-      if (!selectedProvider || !selectedCard) return;
+    // بناء شاشة اختيار نوع الفاتورة (كهرباء / غاز / مياه)
+    function renderUtilities() {
+      const grid = document.getElementById("utilities-grid");
+      grid.innerHTML = "";
 
-      document.getElementById("confirm-logo").src = selectedProvider.logo;
-      document.getElementById("confirm-logo").alt = selectedProvider.name;
-      document.getElementById("confirm-provider-name").textContent = selectedProvider.name;
-      document.getElementById("confirm-company-text").textContent = selectedProvider.name;
-      document.getElementById("confirm-card-label").textContent = selectedCard.label;
-      document.getElementById("confirm-card-price").textContent = `${selectedCard.price} جنيه مصري`;
+      UTILITY_SERVICES.forEach((util) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "utility-card";
+        card.style.setProperty("--util-color", util.color);
+        card.style.setProperty("--util-bg", util.bg);
+
+        card.innerHTML = `
+          <div class="utility-emoji">${util.emoji}</div>
+          <h3>${util.name}</h3>
+          <span>${util.subtitle}</span>
+        `;
+
+        card.addEventListener("click", () => {
+          appState.mode = "bill";
+          appState.selectedUtility = util;
+          openBillInquiryScreen();
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // فتح شاشة الاستعلام عن الفاتورة
+    function openBillInquiryScreen() {
+      const util = appState.selectedUtility;
+      if (!util) return;
+
+      document.getElementById("bill-inquiry-title").textContent = `2. الاستعلام عن ${util.name}`;
+      document.getElementById("bill-utility-badge").innerHTML = `
+        <span>${util.emoji}</span>
+        <span>${util.name}</span>
+      `;
+      document.getElementById("bill-account-label").textContent = util.accountLabel;
+
+      const select = document.getElementById("bill-company-select");
+      select.innerHTML = "";
+      util.companies.forEach((comp) => {
+        const opt = document.createElement("option");
+        opt.value = comp;
+        opt.textContent = comp;
+        select.appendChild(opt);
+      });
+
+      const input = document.getElementById("bill-account-input");
+      input.value = "";
+      document.getElementById("bill-error-msg").style.display = "none";
+
+      showScreen("screen-bill-inquiry");
+    }
+
+    // تنفيذ الاستعلام عن الفاتورة
+    function handleBillInquiry() {
+      const util = appState.selectedUtility;
+      const company = document.getElementById("bill-company-select").value;
+      const accountInput = document.getElementById("bill-account-input");
+      const cleanAccount = accountInput.value.replace(/\D/g, "");
+      const errorEl = document.getElementById("bill-error-msg");
+
+      if (cleanAccount.length < 6) {
+        errorEl.style.display = "block";
+        accountInput.focus();
+        return;
+      }
+
+      errorEl.style.display = "none";
+      appState.inquiredBill = simulateBillLookup(util, company, cleanAccount);
+      openConfirmScreen();
+    }
+
+    // فتح شاشة التأكيد (تتكيف تلقائياً سواء كانت العملية كارت شحن أو فاتورة)
+    function openConfirmScreen() {
+      const headerEl = document.getElementById("confirm-header-content");
+      const rowsEl = document.getElementById("confirm-rows-container");
+
+      if (appState.mode === "card") {
+        const { selectedProvider, selectedCard } = appState;
+        if (!selectedProvider || !selectedCard) return;
+
+        headerEl.innerHTML = `
+          <img src="${selectedProvider.logo}" alt="${selectedProvider.name}" />
+          <h3 style="font-size: 1.3rem; font-weight: 800;">شحن كارت ${selectedProvider.name}</h3>
+        `;
+
+        rowsEl.innerHTML = `
+          <div class="confirm-row">
+            <span>نوع الخدمة:</span>
+            <span>كروت الشحن والفكة</span>
+          </div>
+          <div class="confirm-row">
+            <span>شركة الاتصالات:</span>
+            <span>${selectedProvider.name}</span>
+          </div>
+          <div class="confirm-row">
+            <span>فئة الكارت:</span>
+            <span>${selectedCard.label}</span>
+          </div>
+          <div class="confirm-row total-row">
+            <span>المبلغ المطلوب دفعه:</span>
+            <span>${selectedCard.price} جنيه مصري</span>
+          </div>
+        `;
+      } else if (appState.mode === "bill") {
+        const bill = appState.inquiredBill;
+        if (!bill) return;
+
+        headerEl.innerHTML = `
+          <div class="confirm-utility-icon">${bill.utilityEmoji}</div>
+          <h3 style="font-size: 1.25rem; font-weight: 800;">${bill.utilityName}</h3>
+        `;
+
+        rowsEl.innerHTML = `
+          <div class="confirm-row">
+            <span>جهة التحصيل:</span>
+            <span>${bill.companyName}</span>
+          </div>
+          <div class="confirm-row">
+            <span>اسم المشترك:</span>
+            <span>${bill.subscriberName}</span>
+          </div>
+          <div class="confirm-row">
+            <span>رقم المشترك / السداد:</span>
+            <span class="mono-cell">${bill.accountNumber}</span>
+          </div>
+          <div class="confirm-row">
+            <span>فاتورة شهر:</span>
+            <span>${bill.billingMonth}</span>
+          </div>
+          <div class="confirm-row">
+            <span>قيمة الفاتورة + رسوم الخدمة:</span>
+            <span>${bill.billAmount} ج + ${bill.serviceFee} ج</span>
+          </div>
+          <div class="confirm-row total-row">
+            <span>إجمالي المبلغ المطلوب:</span>
+            <span>${bill.totalAmount} جنيه مصري</span>
+          </div>
+        `;
+      }
 
       showScreen("screen-confirm");
     }
 
-    // 4. إتمام العملية وتوليد الإيصال
-    function completePurchase() {
-      const { selectedProvider, selectedCard } = appState;
-      if (!selectedProvider || !selectedCard) return;
-
+    // إتمام العملية وتوليد الإيصال وحفظه في LocalStorage
+    function completeTransaction() {
       const now = new Date();
       const formattedDateTime = now.toLocaleString("en-GB", {
         year: "numeric",
@@ -1282,53 +1853,110 @@
         second: "2-digit"
       });
 
-      const pin = generatePinCode();
-      const cleanPin = pin.replace(/-/g, "");
-      const ussdCode = `كود الشحن السريع: ${selectedProvider.ussdPrefix}${cleanPin}${selectedProvider.ussdSuffix}`;
+      const refNumber = generateReferenceCode();
+      let tx = null;
 
-      const transaction = {
-        id: Date.now(),
-        providerId: selectedProvider.id,
-        providerName: selectedProvider.name,
-        cardLabel: selectedCard.label,
-        price: selectedCard.price,
-        pin: pin,
-        ussd: ussdCode,
-        serial: generateSerialNumber(),
-        dateTime: formattedDateTime
-      };
+      if (appState.mode === "card") {
+        const { selectedProvider, selectedCard } = appState;
+        const pin = generatePinCode();
+        const cleanPin = pin.replace(/-/g, "");
+        const ussdCode = `كود الشحن: ${selectedProvider.ussdPrefix}${cleanPin}${selectedProvider.ussdSuffix}`;
 
-      saveTransaction(transaction);
-      displayReceipt(transaction, true);
+        tx = {
+          id: Date.now(),
+          txType: "card",
+          txTypeLabel: "كارت شحن",
+          serviceName: selectedProvider.name,
+          itemTitle: selectedCard.label,
+          amount: selectedCard.price,
+          referenceCode: refNumber,
+          dateTime: formattedDateTime,
+          pin: pin,
+          ussd: ussdCode
+        };
+      } else if (appState.mode === "bill") {
+        const bill = appState.inquiredBill;
+        tx = {
+          id: Date.now(),
+          txType: "bill",
+          txTypeLabel: "دفع فاتورة",
+          serviceName: bill.utilityName,
+          itemTitle: `${bill.utilityShortName} - ${bill.subscriberName}`,
+          amount: bill.totalAmount,
+          referenceCode: refNumber,
+          dateTime: formattedDateTime,
+          companyName: bill.companyName,
+          subscriberName: bill.subscriberName,
+          accountNumber: bill.accountNumber,
+          billingMonth: bill.billingMonth,
+          billAmount: bill.billAmount,
+          serviceFee: bill.serviceFee
+        };
+      }
+
+      if (!tx) return;
+      saveTransaction(tx);
+      displayReceipt(tx, true);
     }
 
-    // عرض بيانات الإيصال في الشاشة الرابعة
+    // عرض بيانات الإيصال الحراري (80mm)
     function displayReceipt(tx, isNew = true) {
       appState.currentReceipt = tx;
 
       const banner = document.getElementById("receipt-status-banner");
       banner.textContent = isNew
-        ? "✅ تمت العملية بنجاح! تم إصدار كارت الشحن"
-        : "📄 نسخة معاد طباعتها من سجل المبيعات";
+        ? "✅ تمت العملية بنجاح! تم إصدار الإيصال"
+        : "📄 نسخة معاد طباعتها من سجل العمليات";
 
-      document.getElementById("rec-provider").textContent = tx.providerName;
-      document.getElementById("rec-label").textContent = tx.cardLabel;
-      document.getElementById("rec-price").textContent = `${tx.price} جنيه`;
-      document.getElementById("rec-datetime").textContent = tx.dateTime;
-      document.getElementById("rec-serial").textContent = tx.serial;
-      document.getElementById("rec-pin").textContent = tx.pin;
-      document.getElementById("rec-ussd").textContent = tx.ussd;
+      const detailsContainer = document.getElementById("rec-details-rows");
+
+      if (tx.txType === "card") {
+        document.getElementById("rec-subtitle").textContent = "إيصال شحن إلكتروني معتمد";
+        detailsContainer.innerHTML = `
+          <div class="receipt-line"><span>نوع الخدمة:</span><span>كارت شحن</span></div>
+          <div class="receipt-line"><span>الشبكة:</span><span>${tx.serviceName}</span></div>
+          <div class="receipt-line"><span>فئة الكارت:</span><span>${tx.itemTitle}</span></div>
+          <div class="receipt-line"><span>القيمة المدفوعة:</span><span>${tx.amount} جنيه</span></div>
+          <div class="receipt-line"><span>التاريخ والوقت:</span><span dir="ltr">${tx.dateTime}</span></div>
+          <div class="receipt-line"><span>الرقم المرجعي:</span><span class="mono-cell">${tx.referenceCode}</span></div>
+        `;
+
+        document.getElementById("rec-highlight-label").textContent = "كود الشحن (PIN CODE)";
+        document.getElementById("rec-highlight-value").textContent = tx.pin;
+        document.getElementById("rec-highlight-sub").textContent = tx.ussd;
+        document.getElementById("rec-highlight-sub").style.direction = "ltr";
+      } else {
+        document.getElementById("rec-subtitle").textContent = "إيصال سداد فواتير المرافق";
+        detailsContainer.innerHTML = `
+          <div class="receipt-line"><span>الخدمة:</span><span>${tx.serviceName}</span></div>
+          <div class="receipt-line"><span>الجهة:</span><span>${tx.companyName}</span></div>
+          <div class="receipt-line"><span>اسم المشترك:</span><span>${tx.subscriberName}</span></div>
+          <div class="receipt-line"><span>رقم الحساب:</span><span class="mono-cell">${tx.accountNumber}</span></div>
+          <div class="receipt-line"><span>شهر الفاتورة:</span><span>${tx.billingMonth}</span></div>
+          <div class="receipt-line"><span>قيمة الفاتورة:</span><span>${tx.billAmount} جنيه</span></div>
+          <div class="receipt-line"><span>رسوم الخدمة:</span><span>${tx.serviceFee} جنيه</span></div>
+          <div class="receipt-line" style="font-size: 1rem; border-top: 1px dashed #999; padding-top: 4px;">
+            <span>الإجمالي المدفوع:</span><span>${tx.amount} جنيه</span>
+          </div>
+          <div class="receipt-line"><span>التاريخ والوقت:</span><span dir="ltr">${tx.dateTime}</span></div>
+        `;
+
+        document.getElementById("rec-highlight-label").textContent = "رقم مرجع السداد المعتمد";
+        document.getElementById("rec-highlight-value").textContent = tx.referenceCode;
+        document.getElementById("rec-highlight-sub").textContent = "تم السداد بنجاح — الفاتورة خالصة";
+        document.getElementById("rec-highlight-sub").style.direction = "rtl";
+      }
 
       showScreen("screen-receipt");
     }
 
-    // 5. فتح وعرض شاشة سجل المبيعات
+    // عرض سجل العمليات والمبيعات
     function openHistoryScreen() {
       const transactions = getTransactions();
       const container = document.getElementById("history-table-container");
 
       const totalCount = transactions.length;
-      const totalAmount = transactions.reduce((sum, item) => sum + Number(item.price), 0);
+      const totalAmount = transactions.reduce((sum, item) => sum + Number(item.amount || 0), 0);
 
       document.getElementById("stat-total-count").textContent = totalCount;
       document.getElementById("stat-total-amount").textContent = `${totalAmount} جنيه`;
@@ -1338,12 +1966,19 @@
       } else {
         let rowsHtml = "";
         transactions.forEach((tx, index) => {
+          const isBill = tx.txType === "bill";
+          const badgeHtml = isBill
+            ? `<span class="badge-type badge-bill">فاتورة</span>`
+            : `<span class="badge-type badge-card">كارت شحن</span>`;
+          const codePreview = isBill ? tx.accountNumber : tx.pin;
+
           rowsHtml += `
             <tr>
-              <td>${tx.providerName}</td>
-              <td>${tx.cardLabel}</td>
-              <td><strong>${tx.price} ج</strong></td>
-              <td class="mono-cell">${tx.pin}</td>
+              <td>${badgeHtml}</td>
+              <td>${tx.serviceName}</td>
+              <td>${tx.itemTitle}</td>
+              <td><strong>${tx.amount} ج</strong></td>
+              <td class="mono-cell">${codePreview}</td>
               <td class="mono-cell">${tx.dateTime}</td>
               <td>
                 <button type="button" class="btn-reprint" data-index="${index}">🖨️ إيصال</button>
@@ -1356,10 +1991,11 @@
           <table>
             <thead>
               <tr>
-                <th>الشبكة</th>
-                <th>الفئة</th>
-                <th>السعر</th>
-                <th>رقم الكارت (PIN)</th>
+                <th>النوع</th>
+                <th>الخدمة / الشبكة</th>
+                <th>التفاصيل</th>
+                <th>المبلغ</th>
+                <th>رقم الكارت / الحساب</th>
                 <th>التاريخ والوقت</th>
                 <th>إجراء</th>
               </tr>
@@ -1368,14 +2004,11 @@
           </table>
         `;
 
-        // ربط أزرار إعادة عرض/طباعة الإيصال من السجل
         container.querySelectorAll(".btn-reprint").forEach((btn) => {
           btn.addEventListener("click", (e) => {
             const idx = Number(e.currentTarget.getAttribute("data-index"));
             const selectedTx = transactions[idx];
-            if (selectedTx) {
-              displayReceipt(selectedTx, false);
-            }
+            if (selectedTx) displayReceipt(selectedTx, false);
           });
         });
       }
@@ -1383,7 +2016,6 @@
       showScreen("screen-history");
     }
 
-    // حذف سجل المبيعات بالكامل
     function clearHistory() {
       const transactions = getTransactions();
       if (transactions.length === 0) {
@@ -1391,8 +2023,7 @@
         return;
       }
 
-      const confirmed = confirm("هل أنت متأكد من حذف جميع العمليات المسجلة نهائياً؟");
-      if (confirmed) {
+      if (confirm("هل أنت متأكد من حذف جميع العمليات المسجلة نهائياً؟")) {
         localStorage.removeItem(STORAGE_KEY);
         updateHistoryBadge();
         openHistoryScreen();
@@ -1409,29 +2040,90 @@
       setInterval(updateClock, 1000);
 
       renderProviders();
+      renderUtilities();
       updateHistoryBadge();
 
-      // أزرار الشريط العلوي
+      // التنقل من الشريط العلوي
       document.getElementById("nav-home-btn").addEventListener("click", () => {
-        showScreen("screen-providers");
+        showScreen("screen-home");
       });
 
       document.getElementById("nav-history-btn").addEventListener("click", () => {
         openHistoryScreen();
       });
 
-      // أزرار شاشة الفئات
+      // أزرار الشاشة الرئيسية
+      document.getElementById("go-cards-service-btn").addEventListener("click", () => {
+        appState.mode = "card";
+        showScreen("screen-providers");
+      });
+
+      document.getElementById("go-bills-service-btn").addEventListener("click", () => {
+        appState.mode = "bill";
+        showScreen("screen-utilities");
+      });
+
+      // أزرار الرجوع في قسم كروت الشحن
+      document.getElementById("providers-back-home-btn").addEventListener("click", () => {
+        showScreen("screen-home");
+      });
+
       document.getElementById("back-to-providers-btn").addEventListener("click", () => {
         showScreen("screen-providers");
       });
 
-      // أزرار شاشة التأكيد
-      document.getElementById("confirm-purchase-btn").addEventListener("click", () => {
-        completePurchase();
+      // أزرار قسم فواتير المرافق
+      document.getElementById("utilities-back-home-btn").addEventListener("click", () => {
+        showScreen("screen-home");
       });
 
-      document.getElementById("back-to-denom-btn").addEventListener("click", () => {
-        showScreen("screen-denominations");
+      document.getElementById("back-to-utilities-btn").addEventListener("click", () => {
+        showScreen("screen-utilities");
+      });
+
+      document.getElementById("inquire-bill-btn").addEventListener("click", () => {
+        handleBillInquiry();
+      });
+
+      // السماح بالاستعلام عند الضغط على Enter داخل حقل رقم المشترك
+      const billInput = document.getElementById("bill-account-input");
+      billInput.addEventListener("input", () => {
+        billInput.value = billInput.value.replace(/\D/g, "");
+      });
+
+      billInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") handleBillInquiry();
+      });
+
+      // ربط أزرار لوحة الأرقام اللمسية (Keypad)
+      document.getElementById("bill-keypad").addEventListener("click", (e) => {
+        const btn = e.target.closest(".key-btn");
+        if (!btn) return;
+
+        const key = btn.getAttribute("data-key");
+        const action = btn.getAttribute("data-action");
+
+        if (key !== null && billInput.value.length < 16) {
+          billInput.value += key;
+        } else if (action === "backspace") {
+          billInput.value = billInput.value.slice(0, -1);
+        } else if (action === "clear") {
+          billInput.value = "";
+        }
+        billInput.focus();
+      });
+
+      // أزرار شاشة التأكيد
+      document.getElementById("confirm-purchase-btn").addEventListener("click", () => {
+        completeTransaction();
+      });
+
+      document.getElementById("back-from-confirm-btn").addEventListener("click", () => {
+        if (appState.mode === "card") {
+          showScreen("screen-denominations");
+        } else {
+          showScreen("screen-bill-inquiry");
+        }
       });
 
       // أزرار شاشة الإيصال
@@ -1442,12 +2134,14 @@
       document.getElementById("new-transaction-btn").addEventListener("click", () => {
         appState.selectedProvider = null;
         appState.selectedCard = null;
-        showScreen("screen-providers");
+        appState.selectedUtility = null;
+        appState.inquiredBill = null;
+        showScreen("screen-home");
       });
 
-      // أزرار شاشة سجل المبيعات
+      // أزرار شاشة سجل العمليات
       document.getElementById("history-back-btn").addEventListener("click", () => {
-        showScreen("screen-providers");
+        showScreen("screen-home");
       });
 
       document.getElementById("clear-history-btn").addEventListener("click", () => {
